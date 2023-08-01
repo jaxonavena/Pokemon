@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+#require 'bundler/setup'
+#require 'awesome_print'
+
+files = Dir.glob("./lib/*.rb")
+begin
+  raise unless files.any?
+  puts Dir.pwd
+  puts`ruby -e "require bundler/setup" #{files.first}`
+rescue => e
+  puts "Nothing to run!"
+  p e
+end
