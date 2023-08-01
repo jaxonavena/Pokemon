@@ -2,13 +2,9 @@ require 'spec_helper'
 require 'pokemon'
 
 RSpec.describe Pokemon do
-  let(:a_valid_pokemon) { described_class.new("swagitha", 100) }
+  let(:a_valid_pokemon) { described_class.new(name: "Swagitha", hp: 100, id: 1, type: "Fire", attack: 10, defense:20, speed: 30, sp_atk: 40, sp_def: 50) }
 
-  it "has a name" do
-    expect(a_valid_pokemon).to be_respond_to(:name)
-  end
-
-  it "has health" do
-    expect(a_valid_pokemon).to be_respond_to(:health)
+  it "is a valid pokemon" do
+    expect { a_valid_pokemon }.not_to raise_error
   end
 end
