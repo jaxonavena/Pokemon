@@ -5,7 +5,7 @@ require 'pokemon/nosepass'
 RSpec.describe Nosepass do
   subject { described_class.new() }
 
-  it "is a valid Nosepass" do
+  it 'is a valid Nosepass' do
     expect { subject }.not_to raise_error
   end
 
