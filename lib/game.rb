@@ -1,25 +1,24 @@
+require 'rubygems'
+require 'bundler/setup'
 require_relative 'simulation'
-
+require 'tty-prompt'
 class Game
   def initialize
-    resolve_game_mode
+    gamemode = resolve_game_mode
+    case gamemode
+    when 'Auto'
+      start_simulation
+    when 'Two-Player'
+      start_two_player
+    else
+      'Invalid Option'
+    end
   end
 
   private
 
   def resolve_game_mode
-    puts "\nWhich Game Mode Would You Like To Play?"
-    puts "Options:\n1. Auto\n2. Two Player"
-
-    user_choice = gets.chomp
-    case user_choice
-    when '1'
-      start_simulation
-    when '2'
-      start_two_player
-    else
-      puts 'Error: Invalid Option'
-    end
+    TTY::Prompt.new.select('Which Game Mode Would You Like To Play?', %w[Auto Two-Player])
   end
 
   def start_simulation
