@@ -1,13 +1,12 @@
 require 'spec_helper'
 require 'pokemon'
-require 'pokemon/psyduck'
 
-RSpec.describe Psyduck do
+RSpec.describe Pokemon::Charmander do
   subject { described_class.new() }
 
-  it "is a valid psyduck" do
+  it "is a valid charmander" do
     expect { subject }.not_to raise_error
   end
 
-  it_behaves_like 'water type'
+  it_behaves_like 'fire type'
 end

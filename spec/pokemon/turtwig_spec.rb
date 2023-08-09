@@ -1,13 +1,12 @@
 require 'spec_helper'
 require 'pokemon'
-require 'pokemon/diglett'
 
-RSpec.describe Diglett do
+RSpec.describe Pokemon::Turtwig do
   subject { described_class.new() }
 
-  it 'is a valid Diglett' do
+  it "is a valid Turtwig" do
     expect { subject }.not_to raise_error
   end
 
-  it_behaves_like 'ground type'
+  it_behaves_like 'grass type'
 end

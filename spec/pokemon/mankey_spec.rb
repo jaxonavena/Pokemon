@@ -1,8 +1,7 @@
 require 'spec_helper'
 require 'pokemon'
-require 'pokemon/mankey'
 
-RSpec.describe Mankey do
+RSpec.describe Pokemon::Mankey do
   subject { described_class.new() }
 
   it 'is a valid Mankey' do

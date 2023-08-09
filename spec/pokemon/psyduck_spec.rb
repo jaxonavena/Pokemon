@@ -1,11 +1,10 @@
 require 'spec_helper'
 require 'pokemon'
-require 'pokemon/poliwag'
 
-RSpec.describe Poliwag do
+RSpec.describe Pokemon::Psyduck do
   subject { described_class.new() }
 
-  it "is a valid Poliwag" do
+  it "is a valid psyduck" do
     expect { subject }.not_to raise_error
   end
 
