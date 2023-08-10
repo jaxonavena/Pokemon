@@ -38,14 +38,8 @@ class Team
   end
 
   def switch_pokemon
-    # Show current pokemon
-    puts "\nSwitching #{@active_pokemon} for..."
     available_pokemon = @pokemon - [@active_pokemon]
-
-    # Update current pokemon
-    list_options(available_pokemon)
-    user_choice = (gets.chomp.to_i - 1)
-    @active_pokemon = available_pokemon[user_choice]
+    @active_pokemon = TTY::Prompt.new.select("Switching #{@active_pokemon.name} for...", available_pokemon.collect { |pokemon| pokemon.name } )
     puts "#{@active_pokemon.upcase}!"
   end
 end

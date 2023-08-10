@@ -38,9 +38,9 @@ class Simulation
 
   def announce_teams
     puts "\nTEAM 1:"
-    @team1.pokemon.each { |pokemon| puts pokemon }
+    @team1.pokemon.each { |pokemon| puts pokemon.name }
     puts "\nTEAM 2:"
-    @team2.pokemon.each { |pokemon| puts pokemon }
+    @team2.pokemon.each { |pokemon| puts pokemon.name }
   end
 
   def set_opponents
