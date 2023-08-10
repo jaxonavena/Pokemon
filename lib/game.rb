@@ -27,7 +27,8 @@ class Game
   end
 
   def start_two_player
-    'temp'
+    simulation = Simulation.new
+    simulation.start_battle
   end
 end
 

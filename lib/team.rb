@@ -1,6 +1,6 @@
 class Team
   TURN_OPTIONS = %w[Attack Defend Switch].freeze
-  attr_accessor :pokemon, :opponent
+  attr_accessor :pokemon, :active_pokemon, :opponent
 
   def initialize(pokemon)
     @pokemon = pokemon
@@ -14,7 +14,7 @@ class Team
     user_choice = gets.chomp
     case user_choice
     when '1'
-      @active_pokemon.attack(@opponent)
+      @active_pokemon.attack(@opponent.active_pokemon)
     when '2'
       @active_pokemon.defend
     when '3'
@@ -39,7 +39,7 @@ class Team
 
   def switch_pokemon
     available_pokemon = @pokemon - [@active_pokemon]
-    @active_pokemon = TTY::Prompt.new.select("Switching #{@active_pokemon.name} for...", available_pokemon.collect { |pokemon| pokemon.name } )
-    puts "#{@active_pokemon.upcase}!"
+    pokemon_name = TTY::Prompt.new.select("Switching #{@active_pokemon.name} for...", available_pokemon.collect { |pokemon| pokemon.name } )
+    @active_pokemon = available_pokemon.select { |pokemon| pokemon.name == pokemon_name }
   end
 end
