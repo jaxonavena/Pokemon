@@ -18,8 +18,7 @@ class Simulation
       @team1.take_turn(1)
       @team2.take_turn(2)
 
-      # TODO: take out
-      @game_loop = false
+      # TODO: Add way for the game to end when someone's team completely dies
     end
   end
 
