@@ -21,7 +21,7 @@ class Team
     when 'Attack'
       @active_pokemon.attack(opponent.active_pokemon)
     when 'Defend'
-      @active_pokemon.defend
+      @active_pokemon.defending = true
     when 'Switch'
       switch_pokemon
     else

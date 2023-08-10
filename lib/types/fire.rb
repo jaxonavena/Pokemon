@@ -8,6 +8,10 @@
         def type_traits
           {type: :fire, weaknesses: %i[ground rock water], resistances: %i[steel fire ice fairy], immunities: %i[]}
         end
+
+        def type_icon
+          '🔥'
+        end
       end
     end
   end

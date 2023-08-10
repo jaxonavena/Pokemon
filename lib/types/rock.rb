@@ -8,6 +8,10 @@ module Types
       def type_traits
         {type: :rock, weaknesses: %i[fighting ground steel water grass], resistances: %i[normal flying poison fire], immunities: %i[]}
       end
+
+      def type_icon
+        '🗿'
+      end
     end
   end
 end

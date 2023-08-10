@@ -8,6 +8,10 @@
         def type_traits
           {type: :steel, weaknesses: %i[fighting ground fire], resistances: %i[normal flying rock bug steel grass psychic ice dragon fairy poison], immunities: %i[poison]}
         end
+
+        def type_icon
+          '⚙️'
+        end
       end
     end
   end

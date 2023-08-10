@@ -8,6 +8,10 @@
         def type_traits
           {type: :fairy, weaknesses: %i[poison steel], resistances: %i[fighting bug dark dragon], immunities: %i[dragon]}
         end
+
+        def type_icon
+          '🧚🏿‍♀️'
+        end
       end
     end
   end
