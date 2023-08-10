@@ -15,15 +15,13 @@ class Team
   end
 
   def take_turn(player_id)
-    print "\nPlayer #{player_id}:"
-    list_options(TURN_OPTIONS, true)
-    user_choice = gets.chomp
+    user_choice = TTY::Prompt.new.select("Player #{player_id} [#{@active_pokemon.name}]:", TURN_OPTIONS)
     case user_choice
-    when '1'
+    when 'Attack'
       @active_pokemon.attack(@opponent.active_pokemon)
-    when '2'
+    when 'Defend'
       @active_pokemon.defend
-    when '3'
+    when 'Switch'
       switch_pokemon
     else
       puts 'Invalid Option'
