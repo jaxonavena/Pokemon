@@ -2,23 +2,24 @@ require 'active_support/all'
 class Team
   include Enumerable
   TURN_OPTIONS = %w[Attack Defend Switch].freeze
-  attr_accessor :pokemon, :active_pokemon, :opponent
+  attr_accessor :pokemon, :active_pokemon, :team_name
 
-  def initialize(pokemon)
+  def initialize(pokemon, team_name)
     @pokemon = Array.wrap(pokemon).map(&:name).zip(Array.wrap(pokemon)).to_h
     @active_pokemon = @pokemon.values.first
-    @opponent = nil
+    @team_name = team_name
   end
 
   def each(&block)
     @pokemon.values.each(&block)
   end
 
-  def take_turn(player_id)
-    user_choice = TTY::Prompt.new.select("Player #{player_id} [#{@active_pokemon.name}]:", TURN_OPTIONS)
+  def take_turn(opponent)
+    switch_pokemon unless @active_pokemon.awake?
+    user_choice = TTY::Prompt.new.select("Player #{@team_name} [#{@active_pokemon.name}]:", TURN_OPTIONS)
     case user_choice
     when 'Attack'
-      @active_pokemon.attack(@opponent.active_pokemon)
+      @active_pokemon.attack(opponent.active_pokemon)
     when 'Defend'
       @active_pokemon.defend
     when 'Switch'
@@ -30,19 +31,12 @@ class Team
 
   private
 
-  # Will take an array and output a numbered list of each element
-  # br is the optional breakline
-  def list_options(options, br = false)
-    puts "\n----------------" if br
-    i = 0
-    options.each do |option|
-      i += 1
-      puts "#{i}. #{option}"
-    end
+  def switch_pokemon
+    selected_pokemon = TTY::Prompt.new.select("Switching #{@active_pokemon.name} for...", benched_pokemon)
+    @active_pokemon = selected_pokemon
   end
 
-  def switch_pokemon
-    selected_pokemon = TTY::Prompt.new.select("Switching #{@active_pokemon.name} for...", @pokemon.keys - [@active_pokemon])
-    @active_pokemon = @pokemon[selected_pokemon] || @active_pokemon
+  def benched_pokemon
+    select(&:awake?) - [@active_pokemon]
   end
 end

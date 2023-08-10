@@ -2,24 +2,25 @@ require_relative 'pokemon'
 require_relative 'types'
 require_relative 'team'
 class Simulation
-  attr_accessor :game_loop
+  attr_accessor :game_over
 
   def initialize
     @available_pokemon = generate_list_of_pokemon
-    @team1 = generate_team_of_six
-    @team2 = generate_team_of_six
-    set_opponents
-    @game_loop = true
+    @teams = 2.times.collect { |i| generate_team_of_six(i + 1) }
+    @game_over = false
   end
 
   def start_battle
     announce_teams
-    while @game_loop
-      @team1.take_turn(1)
-      @team2.take_turn(2)
+    until @game_over
+      @teams.first.take_turn(@teams.last)
+      @teams.last.take_turn(@teams.first)
 
-      # TODO: Add way for the game to end when someone's team completely dies
+      @game_over = @teams.any? do |team|
+        team.all?(&:fainted?)
+      end
     end
+    puts "GAME OVER"
   end
 
   private
@@ -31,19 +32,14 @@ class Simulation
     end
   end
 
-  def generate_team_of_six
-    Team.new(@available_pokemon.uniq.sample(6))
+  def generate_team_of_six(team_name)
+    Team.new(@available_pokemon.uniq.sample(6), team_name)
   end
 
   def announce_teams
-    puts "\nTEAM 1:"
-    @team1.each { |pokemon| puts pokemon.name }
-    puts "\nTEAM 2:"
-    @team2.each { |pokemon| puts pokemon.name }
-  end
-
-  def set_opponents
-    @team1.opponent = @team2
-    @team2.opponent = @team1
+    @teams.each do |team|
+      puts "Team #{team.team_name}:"
+      puts team.pokemon.values.join(', ')
+    end
   end
 end
