@@ -1,15 +1,13 @@
-module Pokemon
   module Types
-    module Fairy
+    module Grass
       def self.included(base)
         base.extend(ClassMethods)
       end
 
       module ClassMethods
         def type_traits
-          {type: :fairy, weaknesses: %i[poison steel], resistances: %i[fighting bug dark dragon], immunities: %i[dragon]}
+          {type: :grass, weaknesses: %i[flying poison bug fire ice], resistances: %i[water grass electric], immunities: %i[]}
         end
       end
     end
   end
-end

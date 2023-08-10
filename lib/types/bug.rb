@@ -1,15 +1,13 @@
-module Pokemon
   module Types
-    module Fire
+    module Bug
       def self.included(base)
         base.extend(ClassMethods)
       end
 
       module ClassMethods
         def type_traits
-          {type: :fire, weaknesses: %i[ground rock water], resistances: %i[steel fire ice fairy], immunities: %i[]}
+          {type: :bug, weaknesses: %i[flying rock fire], resistances: %i[fighting ground grass], immunities: %i[]}
         end
       end
     end
   end
-end

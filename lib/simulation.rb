@@ -1,7 +1,5 @@
-Dir.glob(File.join(File.join(__dir__, 'pokemon'), '**', '*.rb')).each do |file_path|
-  require file_path
-end
-
+require_relative 'pokemon'
+require_relative 'types'
 require_relative 'team'
 class Simulation
   attr_accessor :game_loop
@@ -28,17 +26,10 @@ class Simulation
   private
 
   def generate_list_of_pokemon
-    pokemon_names = []
-
-    # Iterate through each .rb file in the pokemon folder
-    # Extract the pokemon name from the file name
-    pokemon_name = File.basename(file_path).capitalize
-    pokemon_name.gsub!('.rb', '')
-
-    class_object = Object.const_get(pokemon_name)
-    instance = class_object.new
-    pokemon_names << instance
-    pokemon_names
+    pokemon_names = Pokemon.constants - [:Types, :Base]
+    pokemon_names.collect do |pokemon|
+      Pokemon.const_get(pokemon).new
+    end
   end
 
   def generate_team_of_six

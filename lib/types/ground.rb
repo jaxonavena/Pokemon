@@ -1,4 +1,3 @@
-module Pokemon
   module Types
     module Ground
       def self.included(base)
@@ -12,4 +11,3 @@ module Pokemon
       end
     end
   end
-end
