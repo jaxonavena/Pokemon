@@ -1,11 +1,17 @@
+require 'active_support/all'
 class Team
+  include Enumerable
   TURN_OPTIONS = %w[Attack Defend Switch].freeze
   attr_accessor :pokemon, :active_pokemon, :opponent
 
   def initialize(pokemon)
-    @pokemon = pokemon
-    @active_pokemon = @pokemon.first
+    @pokemon = Array.wrap(pokemon).map(&:name).zip(Array.wrap(pokemon)).to_h
+    @active_pokemon = @pokemon.values.first
     @opponent = nil
+  end
+
+  def each(&block)
+    @pokemon.values.each(&block)
   end
 
   def take_turn(player_id)
@@ -38,8 +44,7 @@ class Team
   end
 
   def switch_pokemon
-    available_pokemon = @pokemon - [@active_pokemon]
-    pokemon_name = TTY::Prompt.new.select("Switching #{@active_pokemon.name} for...", available_pokemon.collect { |pokemon| pokemon.name } )
-    @active_pokemon = available_pokemon.select { |pokemon| pokemon.name == pokemon_name }
+    selected_pokemon = TTY::Prompt.new.select("Switching #{@active_pokemon.name} for...", @pokemon.keys - [@active_pokemon])
+    @active_pokemon = @pokemon[selected_pokemon] || @active_pokemon
   end
 end
