@@ -33,7 +33,7 @@ module Pokemon
     def attack(target)
       @defending = false
       target.defend(@atk_power, @type) # TODO: change type to atk_type to make attacks more specfic
-      puts "#{self} used #{@type} it was effective!"
+      puts "#{self} used #{@type}-attack it was effective!"
       puts "#{target} is now at #{target.hp} HP!"
     end
 

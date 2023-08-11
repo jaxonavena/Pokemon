@@ -411,3 +411,153 @@ RSpec.shared_examples 'rock type' do
     end
   end
 end
+
+RSpec.shared_examples 'dragon type' do
+  describe 'weaknesses' do
+    it 'is vulnerable to ice' do
+      expect(subject).to be_vulnerable_to(:ice)
+    end
+
+    it 'is vulnerable to dragon' do
+      expect(subject).to be_vulnerable_to(:dragon)
+    end
+
+    it 'is vulnerable to fairy' do
+      expect(subject).to be_vulnerable_to(:fairy)
+    end
+  end
+
+  describe 'resistances' do
+    it 'is resistant to fire' do
+      expect(subject).to be_resistant_to(:fire)
+    end
+
+    it 'is resistant to water' do
+      expect(subject).to be_resistant_to(:water)
+    end
+
+    it 'is resistant to grass' do
+      expect(subject).to be_resistant_to(:grass)
+    end
+
+    it 'is resistant to electric' do
+      expect(subject).to be_resistant_to(:electric)
+    end
+  end
+end
+
+RSpec.shared_examples 'ghost type' do
+  describe 'weaknesses' do
+    it 'is vulnerable to ghost' do
+      expect(subject).to be_vulnerable_to(:ghost)
+    end
+
+    it 'is vulnerable to dark' do
+      expect(subject).to be_vulnerable_to(:dark)
+    end
+  end
+
+  describe 'resistances' do
+    it 'is resistant to poison' do
+      expect(subject).to be_resistant_to(:poison)
+    end
+
+    it 'is resistant to bug' do
+      expect(subject).to be_resistant_to(:bug)
+    end
+  end
+
+  describe 'immunities' do
+    it 'is immune to normal' do
+      expect(subject).to be_immune_to(:normal)
+    end
+
+    it 'is immune to fighting' do
+      expect(subject).to be_immune_to(:fighting)
+    end
+  end
+end
+
+RSpec.shared_examples 'psychic type' do
+  describe 'weaknesses' do
+    it 'is vulnerable to bug' do
+      expect(subject).to be_vulnerable_to(:bug)
+    end
+
+    it 'is vulnerable to ghost' do
+      expect(subject).to be_vulnerable_to(:ghost)
+    end
+
+    it 'is vulnerable to dragon' do
+      expect(subject).to be_vulnerable_to(:dragon)
+    end
+  end
+
+  describe 'resistances' do
+    it 'is resistant to fighting' do
+      expect(subject).to be_resistant_to(:fighting)
+    end
+
+    it 'is resistant to psychic' do
+      expect(subject).to be_resistant_to(:psychic)
+    end
+  end
+end\
+
+RSpec.shared_examples 'dark type' do
+  describe 'weaknesses' do
+    it 'is vulnerable to fighting' do
+      expect(subject).to be_vulnerable_to(:fighting)
+    end
+
+    it 'is vulnerable to bug' do
+      expect(subject).to be_vulnerable_to(:bug)
+    end
+
+    it 'is vulnerable to fairy' do
+      expect(subject).to be_vulnerable_to(:fairy)
+    end
+  end
+
+  describe 'resistances' do
+    it 'is resistant to ghost' do
+      expect(subject).to be_resistant_to(:ghost)
+    end
+
+    it 'is resistant to dark' do
+      expect(subject).to be_resistant_to(:dark)
+    end
+  end
+
+  describe 'immunities' do
+    it 'is immune to psychic' do
+      expect(subject).to be_immune_to(:psychic)
+    end
+  end
+end
+
+RSpec.shared_examples 'ice type' do
+  describe 'weaknesses' do
+    it 'is vulnerable to fighting' do
+      expect(subject).to be_vulnerable_to(:fighting)
+    end
+
+    it 'is vulnerable to rock' do
+      expect(subject).to be_vulnerable_to(:rock)
+    end
+
+    it 'is vulnerable to steel' do
+      expect(subject).to be_vulnerable_to(:steel)
+    end
+
+    it 'is vulnerable to fire' do
+      expect(subject).to be_vulnerable_to(:fire)
+    end
+  end
+
+  describe 'resistances' do
+    it 'is resistant to ice' do
+      expect(subject).to be_resistant_to(:ice)
+    end
+  end
+end

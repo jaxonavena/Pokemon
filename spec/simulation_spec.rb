@@ -13,7 +13,7 @@ RSpec.describe Simulation do
   end
 
   it 'generates a team of six pokemon' do
-    expect { subject.send(:generate_team_of_six) }.not_to raise_error
+    expect { subject.send(:generate_team_of_six, 'TEAM NAME') }.not_to raise_error
   end
 
   # let(:a_team) { Team.new(%w[Pikachu Squirtle Charizard Psyduck Mankey Diglett]) }

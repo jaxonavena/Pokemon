@@ -1,7 +1,6 @@
 require_relative 'base'
 require_relative '../types/fighting'
 module Pokemon
-
   class Mankey < Base
     include ::Types::Fighting
 

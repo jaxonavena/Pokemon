@@ -20,7 +20,7 @@ class Simulation
         team.all?(&:fainted?)
       end
     end
-    puts "GAME OVER"
+    puts 'GAME OVER'
   end
 
   private
