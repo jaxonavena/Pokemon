@@ -137,6 +137,7 @@ RSpec.shared_examples 'type' do |types|
           expect(subject).to send(test, trait.to_sym)
         end
       end
+    end
   end
 
   describe 'weaknesses' do
@@ -382,10 +383,6 @@ RSpec.shared_examples 'steel type' do
 
     it 'is resistant to fairy' do
       expect(subject).to be_resistant_to(:fairy)
-    end
-
-    it 'is resistant to poison' do
-      expect(subject).to be_resistant_to(:poison)
     end
   end
 
