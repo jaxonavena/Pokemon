@@ -100,6 +100,66 @@ RSpec.shared_examples 'grass type' do
   end
 end
 
+RSpec.shared_examples 'type' do |types|
+  def load_type_data
+    filepath = 'data/types.yml'
+    type_data = YAML.load_file(filepath)
+    type_data = type_data.with_indifferent_access if type_data.is_a?(Hash)
+  end
+
+  type_data = load_type_data.slice(types).values
+  traits = {}
+  type_data.each do |data|
+    traits.merge!(data[:traits]) { |trait, value| traits[trait] * value }
+  end
+
+  groups = { immune: [], resistant: [], vulnerable: [], normal: [],}
+  traits.each do |trait, value|
+    value = value.to_f
+    case
+    when value.zero?
+      groups[:immune] << trait
+    when value == 1.0
+      groups[:normal] << trait
+    when value > 1.0
+      groups[:vulnerable] << trait
+    when value < 1.0
+      groups[:resistant] << trait
+    else
+      puts "Trait: #{trait}, Value: #{value}"
+    end
+  end
+  groups.each do |group, traits|
+    describe "#{group}" do
+      traits.each do |trait|
+        test = "be_#{trait}_to".to_sym
+        it "to #{trait}" do
+          expect(subject).to send(test, trait.to_sym)
+        end
+      end
+  end
+
+  describe 'weaknesses' do
+    it 'is vulnerable to ground' do
+      expect(subject).to be_vulnerable_to(:ground)
+    end
+  end
+
+  describe 'resistances' do
+    it 'is resistant to flying' do
+      expect(subject).to be_resistant_to(:flying)
+    end
+
+    it 'is resistant to steel' do
+      expect(subject).to be_resistant_to(:steel)
+    end
+
+    it 'is resistant to electric' do
+      expect(subject).to be_resistant_to(:electric)
+    end
+  end
+end
+
 RSpec.shared_examples 'electric type' do
   describe 'weaknesses' do
     it 'is vulnerable to ground' do
@@ -413,6 +473,11 @@ RSpec.shared_examples 'rock type' do
 end
 
 RSpec.shared_examples 'dragon type' do
+  before do
+    puts "weaknesses: #{subject.weaknesses}"
+    puts "resistances: #{subject.resistances}"
+    puts "immunities: #{subject.immunities}"
+  end
   describe 'weaknesses' do
     it 'is vulnerable to ice' do
       expect(subject).to be_vulnerable_to(:ice)

@@ -1,13 +1,12 @@
 require_relative 'base'
-require_relative '../types/normal'
+# require_relative '../types/normal'
 module Pokemon
 
   class Meowth < Base
-    include ::Types::Normal
+    apply_type(:normal)
 
     def initialize
-      traits = {id: 52, name: 'Meowth', hp: 40, atk_power: 45, defense: 35, speed: 90, sp_atk: 40, sp_def: 40}
-      super(**traits.merge(Meowth.type_traits))
+      super(id: 52, name: 'Meowth', hp: 40, atk_power: 45, defense: 35, speed: 90, sp_atk: 40, sp_def: 40)
     end
   end
 end

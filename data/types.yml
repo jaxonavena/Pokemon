@@ -1,0 +1,181 @@
+---
+bug:
+  name: bug
+  icon: 🐛
+  traits:
+    flying: 2
+    rock: 2
+    fire: 2
+    fighting: 0.5
+    ground: 0.5
+    grass: 0.5
+dark:
+  name: dark
+  icon: 🌚
+  traits:
+    fighting: 2
+    bug: 2
+    fairy: 2
+    ghost: 0.5
+    dark: 0.5
+    psychic: 0
+dragon:
+  name: dragon
+  icon: 🐲
+  traits:
+    ice: 2
+    dragon: 2
+    fairy: 2
+    fire: 0.5
+    water: 0.5
+    grass: 0.5
+    electric: 0.5
+electric:
+  name: electric
+  icon: ⚡️
+  traits:
+    ground: 2
+    flying: 0.5
+    steel: 0.5
+    electric: 0.5
+fairy:
+  name: fairy
+  icon: 🧚🏿‍♀️
+  traits:
+    poison: 2
+    steel: 2
+    fighting: 0.5
+    bug: 0.5
+    dark: 0.5
+    dragon: 0
+fighting:
+  name: fighting
+  icon: 🥊
+  traits:
+    flying: 2
+    psychic: 2
+    fairy: 2
+    rock: 0.5
+    bug: 0.5
+    grass: 0.5
+    dark: 0.5
+fire:
+  name: fire
+  icon: 🔥
+  traits:
+    ground: 2
+    rock: 2
+    water: 2
+    steel: 0.5
+    fire: 0.5
+    ice: 0.5
+    fairy: 0.5
+ghost:
+  name: ghost
+  icon: 👻
+  traits:
+    ghost: 2
+    dark: 2
+    poison: 0.5
+    bug: 0.5
+    normal: 0
+    fighting: 0
+grass:
+  name: grass
+  icon: 🌱
+  traits:
+    flying: 2
+    poison: 2
+    bug: 2
+    fire: 2
+    ice: 2
+    water: 0.5
+    grass: 0.5
+    electric: 0.5
+ground:
+  name: ground
+  icon: ⛰️
+  traits:
+    water: 2
+    grass: 2
+    ice: 2
+    poison: 0.5
+    ground: 0.5
+    rock: 0.5
+    electric: 0
+ice:
+  name: ice
+  icon: 🧊
+  traits:
+    fighting: 2
+    rock: 2
+    steel: 2
+    fire: 2
+    ice: 0.5
+normal:
+  name: normal
+  icon: 🧍‍♂️
+  traits:
+    fighting: 2
+    ghost: 0
+poison:
+  name: poison
+  icon: ☣️
+  traits:
+    ground: 2
+    psychic: 2
+    fighting: 0.5
+    poison: 0.5
+    bug: 0.5
+    grass: 0.5
+    fairy: 0.5
+psychic:
+  name: psychic
+  icon: 🔮
+  traits:
+    bug: 2
+    ghost: 2
+    dragon: 2
+    fighting: 0.5
+    psychic: 0.5
+rock:
+  name: rock
+  icon: 🪨
+  traits:
+    fighting: 2
+    ground: 2
+    steel: 2
+    water: 2
+    grass: 2
+    normal: 0.5
+    flying: 0.5
+    poison: 0.5
+    fire: 0.5
+steel:
+  name: steel
+  icon: ⚙️
+  traits:
+    fighting: 2
+    ground: 2
+    fire: 2
+    normal: 0.5
+    flying: 0.5
+    rock: 0.5
+    bug: 0.5
+    steel: 0.5
+    grass: 0.5
+    psychic: 0.5
+    ice: 0.5
+    dragon: 0.5
+    fairy: 0.5
+    poison: 0
+water:
+  name: water
+  icon: 💦
+  traits:
+    grass: 2
+    electric: 2
+    steel: 0.5
+    fire: 0.5
+    water: 0.5
+    ice: 0.5

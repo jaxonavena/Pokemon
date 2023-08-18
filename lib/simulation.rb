@@ -1,5 +1,4 @@
 require_relative 'pokemon'
-require_relative 'types'
 require_relative 'team'
 class Simulation
   attr_accessor :game_over

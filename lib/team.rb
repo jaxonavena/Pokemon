@@ -16,7 +16,7 @@ class Team
 
   def take_turn(opponent)
     switch_pokemon unless @active_pokemon.awake?
-    user_choice = TTY::Prompt.new.select("Player #{@team_name} [#{@active_pokemon.name}]:", TURN_OPTIONS)
+    user_choice = TTY::Prompt.new.select("Player #{@team_name} [#{@active_pokemon.name}]: #{'🟢' * select(&:awake?).count} #{'❌' * select(&:fainted?).count}", TURN_OPTIONS)
     case user_choice
     when 'Attack'
       @active_pokemon.attack(opponent.active_pokemon)

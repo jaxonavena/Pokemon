@@ -1,16 +1,16 @@
   module Types
-    module Fairy
+    module Ground
       def self.included(base)
         base.extend(ClassMethods)
       end
 
       module ClassMethods
         def type_traits
-          {type: :fairy, weaknesses: %i[poison steel], resistances: %i[fighting bug dark dragon], immunities: %i[dragon]}
+          {type: :ground, weaknesses: %i[water grass ice], resistances: %i[poison ground rock], immunities: %i[electric]}
         end
 
         def type_icon
-          '🧚🏿‍♀️'
+          '⛰️'
         end
       end
     end
