@@ -8,6 +8,5 @@ RSpec.describe Pokemon::Dialga do
     expect { subject }.not_to raise_error
   end
 
-  it_behaves_like 'dragon type'
-  it_behaves_like 'steel type'
+  it_behaves_like 'type', [:dragon, :steel]
 end

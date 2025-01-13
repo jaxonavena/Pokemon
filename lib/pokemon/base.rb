@@ -89,27 +89,24 @@ module Pokemon
       @immunities.include?(type)
     end
 
-    def attack(target)
+    def attack
       @defending = false
-      target.defend(@atk_power, @type) # TODO: change type to atk_type to make attacks more specfic
-      puts "#{self} used #{@type}-attack it was effective!"
-      puts "#{target} is now at #{target.hp} HP!"
+      [@atk_power, @type]
     end
 
     def defend(atk_power, atk_type)
-      # You have to call defend before you're attacked, so how do I get the incoming damage into the call?
-      # Maybe a queue_defend call, then once the other player fires, defend the damage
-      # use flag
-      damage = if defending || immune_to?(atk_type)
-                 0
+      effectiveness = ''
+      damage, effectiveness = if defending || immune_to?(atk_type)
+                 [0, 'not']
                elsif resistant_to?(atk_type)
-                 (atk_power / 2) - @defense
+                 [(atk_power / 2) - @defense, 'not very']
                elsif vulnerable_to?(atk_type)
-                 (atk_power * 2) - @defense
+                 [(atk_power * 2) - @defense, 'super']
                else # normal
-                 atk_power - @defense
+                 [atk_power - @defense, '']
                end
       @hp -= [damage, 0].max
+      [damage, effectiveness]
     end
 
     def to_s

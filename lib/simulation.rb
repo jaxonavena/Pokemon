@@ -12,7 +12,9 @@ class Simulation
   def start_battle
     announce_teams
     until @game_over
+      puts "\n\n"
       @teams.first.take_turn(@teams.last)
+      puts "\n"
       @teams.last.take_turn(@teams.first)
 
       @game_over = @teams.any? do |team|

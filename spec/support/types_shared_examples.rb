@@ -100,19 +100,26 @@ RSpec.shared_examples 'grass type' do
   end
 end
 
-RSpec.shared_examples 'type' do |types|
-  def load_type_data
-    filepath = 'data/types.yml'
-    type_data = YAML.load_file(filepath)
-    type_data = type_data.with_indifferent_access if type_data.is_a?(Hash)
-  end
+def load_type_data
+  filepath = 'data/types.yml'
+  YAML.load_file(filepath).symbolize_keys
+end
 
-  type_data = load_type_data.slice(types).values
+RSpec.shared_examples 'type' do |types|
+
+  type_data = load_type_data
+  p type_data
+
+  type_data = type_data.slice(types)
+  p types
   traits = {}
   type_data.each do |data|
+    puts "data: #{data}"
+    p data
     traits.merge!(data[:traits]) { |trait, value| traits[trait] * value }
   end
 
+  p type_data
   groups = { immune: [], resistant: [], vulnerable: [], normal: [],}
   traits.each do |trait, value|
     value = value.to_f
@@ -129,6 +136,7 @@ RSpec.shared_examples 'type' do |types|
       puts "Trait: #{trait}, Value: #{value}"
     end
   end
+  p groups
   groups.each do |group, traits|
     describe "#{group}" do
       traits.each do |trait|

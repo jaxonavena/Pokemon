@@ -153,7 +153,7 @@ rock:
     fire: 0.5
 steel:
   name: steel
-  icon: ⚙️
+  icon: "⚙️ "
   traits:
     fighting: 2
     ground: 2
