@@ -1,7 +1,4 @@
-Dir.glob(File.join(__dir__, 'types', '**', '*.rb')).each do |file_path|
-  require file_path
-end
-
+require 'active_support/all'
 
 module Types
 

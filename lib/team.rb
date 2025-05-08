@@ -1,4 +1,5 @@
 require 'active_support/all'
+require 'tty'
 class Team
   include Enumerable
   TURN_OPTIONS = %w[Attack Defend Switch].freeze
@@ -16,10 +17,19 @@ class Team
 
   def take_turn(opponent)
     switch_pokemon unless @active_pokemon.awake?
-    user_choice = TTY::Prompt.new.select("Player #{@team_name} [#{@active_pokemon.name}]:", TURN_OPTIONS)
+    user_choice = TTY::Prompt.new.select("Player #{@team_name} [#{@active_pokemon.name}]: #{'🟢' * select(&:awake?).count} #{'❌' * select(&:fainted?).count}", TURN_OPTIONS)
     case user_choice
     when 'Attack'
-      @active_pokemon.attack(opponent.active_pokemon)
+      damage, effectiveness = opponent.active_pokemon.defend(*@active_pokemon.attack)
+      effectiveness_message = effectiveness.blank? ? "" : ", it was #{effectiveness} effective!"
+      # box = TTY::Box.frame "#{@active_pokemon}", "used #{@active_pokemon.type.join('/')}-attack", effectiveness_message, title: "Attacking" ,padding: 3, align: :center
+
+      puts "#{@active_pokemon} used #{@active_pokemon.type.join('/')}-attack #{effectiveness_message}"
+      if opponent.active_pokemon.fainted?
+        puts "#{opponent.active_pokemon} fainted!"
+      else
+        puts "#{opponent.active_pokemon} is now at #{opponent.active_pokemon.hp} HP!"
+      end
     when 'Defend'
       @active_pokemon.defending = true
     when 'Switch'

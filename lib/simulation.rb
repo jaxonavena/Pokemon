@@ -1,5 +1,4 @@
 require_relative 'pokemon'
-require_relative 'types'
 require_relative 'team'
 class Simulation
   attr_accessor :game_over
@@ -13,14 +12,16 @@ class Simulation
   def start_battle
     announce_teams
     until @game_over
+      puts "\n\n"
       @teams.first.take_turn(@teams.last)
+      puts "\n"
       @teams.last.take_turn(@teams.first)
 
       @game_over = @teams.any? do |team|
         team.all?(&:fainted?)
       end
     end
-    puts "GAME OVER"
+    puts 'GAME OVER'
   end
 
   private
